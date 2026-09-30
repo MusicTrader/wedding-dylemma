@@ -26,7 +26,7 @@ jobs:
       - name: Collect website files
         run: |
           mkdir -p _site/data
-          cp index.html styles.css travel.css atlas.css script.js atlas.js pamphlet-3d.js _site/
+          cp icons.js index.html styles.css travel.css atlas.css script.js atlas.js pamphlet-3d.js _site/
           cp -R assets _site/assets
           cp data/atlas-layout.json _site/data/
       - uses: actions/upload-pages-artifact@v3

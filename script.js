@@ -93,7 +93,7 @@ function showPlace(place) {
   guideMap.dataset.view = content.mode === 'travel' ? 'region' : 'downtown';
   guideRoute.src = `assets/route-${content.route || 'train'}.svg?v=regional-expanded`;
   guideRoute.hidden = content.mode !== 'travel';
-  mapScaleCaption.textContent = content.mode === 'travel' ? 'SEA AIRPORT ↗ DOWNTOWN SEATTLE' : place === 'sunday' ? 'SUNDAY ↗ DOWNTOWN SEATTLE' : 'WATERFRONT ↗ PIONEER SQUARE';
+  WeddingIcons.setText(mapScaleCaption, content.mode === 'travel' ? 'SEA AIRPORT ↗ DOWNTOWN SEATTLE' : place === 'sunday' ? 'SUNDAY ↗ DOWNTOWN SEATTLE' : 'WATERFRONT ↗ PIONEER SQUARE');
   guideGroups.forEach((group) => { group.hidden = group.dataset.guideGroup !== content.mode; });
   guideModeControls.forEach((control) => {
     const active = control.dataset.guideMode === content.mode;
@@ -113,7 +113,7 @@ function showPlace(place) {
   detailNote.textContent = content.note;
   detailLink.hidden = !content.directions;
   priceSources.hidden = content.mode !== 'travel';
-  if (content.directions) { detailLink.href = content.directions; detailLink.textContent = content.linkText; }
+  if (content.directions) { detailLink.href = content.directions; WeddingIcons.setText(detailLink, content.linkText); }
   placeControls.forEach((control) => {
     const active = control.dataset.place === place;
     control.classList.toggle('active', active);
@@ -175,7 +175,7 @@ const pamphletClose = document.getElementById('pamphlet-close');
 let paperModel;
 let closingPaper = false;
 const paperReady = (async () => {
-  const module = await import('./pamphlet-3d.js?v=bold-paper-1');
+  const module = await import('./pamphlet-3d.js?v=scroll-icons-1');
   await document.fonts.ready;
   await Promise.all([...document.querySelectorAll('.pamphlet-page img, .travel-hero-image, #pamphlet-cover-photo')].map(img => img.decode().catch(() => {})));
   paperModel = await module.createPamphlet({dialog:pamphletDialog,cover:pamphletOpen,onFailure:() => { paperModel = null; }});

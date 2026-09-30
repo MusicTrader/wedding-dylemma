@@ -28,6 +28,11 @@ function pageTexture(element) {
       ctx.save(); ctx.beginPath(); ctx.rect(x,y,box.width,box.height); ctx.clip();
       ctx.drawImage(el,x+(box.width-el.naturalWidth*ratio)/2,y+(box.height-el.naturalHeight*ratio)/2,el.naturalWidth*ratio,el.naturalHeight*ratio); ctx.restore();
     }
+    if (el.dataset.printIcon) {
+      ctx.save();ctx.translate(x,y);ctx.scale(box.width/24,box.height/24);
+      ctx.strokeStyle=style.color;ctx.lineWidth=1.7;ctx.lineCap='round';ctx.lineJoin='round';
+      ctx.stroke(new Path2D(window.WeddingIcons.paths[el.dataset.printIcon]));ctx.restore();return;
+    }
     for (const node of el.childNodes) {
       if (node.nodeType === Node.ELEMENT_NODE) paint(node);
       else if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
@@ -78,7 +83,7 @@ export async function createPamphlet({dialog, cover, onFailure}) {
   let progress=0, view='all', frame=0, animation=null, disposed=false, active=false, generation=0, viewTween=null;
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const host=document.createElement('div');host.className='paper-live-stage';
-  renderer.domElement.setAttribute('aria-hidden','true');host.append(renderer.domElement);document.body.append(host);
+  renderer.domElement.setAttribute('aria-hidden','true');host.append(renderer.domElement);cover.append(host);
   const hitLayer=document.createElement('div');hitLayer.className='paper-hit-layer';host.append(hitLayer);
   const sheet=dialog.querySelector('.pamphlet-sheet');
   const pages=[...sheet.querySelectorAll('.pamphlet-page')];
@@ -143,10 +148,11 @@ export async function createPamphlet({dialog, cover, onFailure}) {
   function project(mesh,x,y){return new THREE.Vector3(x,y,0).applyMatrix4(mesh.matrixWorld).project(camera);}
   function render(){
     if(disposed)return;
-    const width=innerWidth, screenHeight=innerHeight;
+    const width=active?innerWidth:host.clientWidth, screenHeight=active?innerHeight:host.clientHeight;
     renderer.setSize(width,screenHeight,false);camera.aspect=width/screenHeight;camera.position.z=8;camera.updateProjectionMatrix();
     const worldHeight=16*Math.tan(THREE.MathUtils.degToRad(18));
-    const rect=cover.getBoundingClientRect();
+    const coverRect=cover.getBoundingClientRect();
+    const rect=active?coverRect:{left:40,top:40,width:coverRect.width,height:coverRect.height};
     const stageTop=96,stageBottom=screenHeight-(innerWidth<761?126:90);
     const availableH=Math.max(160,stageBottom-stageTop);
     const overviewWidth=Math.min(width*.91,availableH/paperHeight*3);
@@ -182,7 +188,6 @@ export async function createPamphlet({dialog, cover, onFailure}) {
     }
     scene.updateMatrixWorld(true);
     renderer.setScissorTest(false);renderer.clear();
-    if(!active){const hero=document.querySelector('.travel-hero').getBoundingClientRect();renderer.setScissor(0,Math.max(0,screenHeight-hero.bottom),width,Math.max(0,Math.min(screenHeight,hero.bottom)-Math.max(0,hero.top)));renderer.setScissorTest(true);}
     renderer.render(scene,camera);renderer.setScissorTest(false);
     for(const hit of hits){
       const show=active&&progress===1&&(view==='all'||focusIndex===hit.index);
@@ -208,13 +213,13 @@ export async function createPamphlet({dialog, cover, onFailure}) {
   let touchY;
   host.addEventListener('touchstart',event=>{touchY=event.touches[0].clientY;},{passive:true});
   host.addEventListener('touchmove',event=>{if(touchY===undefined)return;const y=event.touches[0].clientY;onScroll({preventDefault:()=>event.preventDefault(),deltaY:touchY-y});touchY=y;},{passive:false});
-  window.addEventListener('scroll',onLayout,{passive:true});window.addEventListener('resize',onLayout);document.addEventListener('visibilitychange',onLayout);
+  const coverObserver=new ResizeObserver(onLayout);coverObserver.observe(cover);window.addEventListener('resize',onLayout);document.addEventListener('visibilitychange',onLayout);
   renderer.domElement.addEventListener('webglcontextlost',event=>{event.preventDefault();dispose();onFailure();});
-  function dispose(){if(disposed)return;disposed=true;stopAnimation();window.removeEventListener('scroll',onLayout);window.removeEventListener('resize',onLayout);document.removeEventListener('visibilitychange',onLayout);host.remove();controls.remove();skip.remove();sheet.classList.remove('paper-source');cover.classList.remove('paper-cover-live');cover.style.removeProperty('height');cover.style.removeProperty('aspect-ratio');dialog.classList.remove('paper-live','paper-measuring');for(const [el,tabindex] of sourceTabindex){if(tabindex===null)el.removeAttribute('tabindex');else el.setAttribute('tabindex',tabindex);el.removeAttribute('aria-hidden');}resources.forEach(r=>r.dispose());renderer.dispose();}
+  function dispose(){if(disposed)return;disposed=true;stopAnimation();coverObserver.disconnect();window.removeEventListener('resize',onLayout);document.removeEventListener('visibilitychange',onLayout);host.remove();controls.remove();skip.remove();sheet.classList.remove('paper-source');cover.classList.remove('paper-cover-live');cover.style.removeProperty('height');cover.style.removeProperty('aspect-ratio');dialog.classList.remove('paper-live','paper-measuring');for(const [el,tabindex] of sourceTabindex){if(tabindex===null)el.removeAttribute('tabindex');else el.setAttribute('tabindex',tabindex);el.removeAttribute('aria-hidden');}resources.forEach(r=>r.dispose());renderer.dispose();}
   setView('all');render();
   return {
     async open(){const run=++generation;active=true;host.dataset.pan='0';dialog.append(host);host.classList.add('is-open');view=innerWidth<761?'weekend':'all';setView(view);controls.hidden=true;skip.hidden=reduced.matches;dialog.dataset.paperState='unfolding';await transition(1);if(active && generation===run)completeOpen();},
-    async close(){++generation;viewTween=null;controls.hidden=true;skip.hidden=true;await transition(0);active=false;host.classList.remove('is-open');document.body.append(host);dialog.dataset.paperState='closed';render();},
+    async close(){++generation;viewTween=null;controls.hidden=true;skip.hidden=true;await transition(0);active=false;host.classList.remove('is-open');cover.append(host);dialog.dataset.paperState='closed';render();},
     restoreFocus(source){const hit=hits.find(h=>h.source===source);if(hit)hit.button.focus({preventScroll:true});},
     dispose
   };

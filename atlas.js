@@ -55,7 +55,7 @@ class SeattleAtlas {
       pin.dataset.location = key;
       pin.setAttribute('aria-label',`Show ${label.replace(' · ', ', ')}`);
       const dot = document.createElement('span'); dot.className='atlas-anchor'; dot.setAttribute('aria-hidden','true');
-      const marker = document.createElement('span'); marker.className='atlas-marker'; marker.textContent=number;
+      const marker = document.createElement('span'); marker.className='atlas-marker'; WeddingIcons.setText(marker,number);
       const text = document.createElement('span'); text.className='atlas-pin-label'; text.textContent=label;
       pin.append(dot,marker,text);
       pin.addEventListener('click', () => {if (!this.dragged) this.onSelect(key);});
