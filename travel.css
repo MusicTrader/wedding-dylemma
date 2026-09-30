@@ -165,3 +165,22 @@ body.pamphlet-open{overflow:hidden}
 .pamphlet-right .pamphlet-note,.pamphlet-right>.travel-link,.pamphlet-right .pamphlet-read-all{color:var(--cream)}
 .pamphlet-right .pamphlet-map{background:var(--rust);color:var(--cream);border-color:var(--gold)}
 .pamphlet-right>.travel-link:hover,.pamphlet-right .pamphlet-read-all:hover{color:var(--gold)}
+
+/* On phones, the photograph leads and the invitation rests below its edge. */
+.mobile-hero-title{display:none}
+@media(max-width:760px){
+  .travel-hero{display:block;min-height:0;height:auto;max-height:none;padding:0 0 32px;background:var(--cream)}
+  .travel-hero-image{position:relative;inset:auto;z-index:0;display:block;width:100%;height:clamp(340px,62svh,520px);object-fit:cover;object-position:27% center}
+  .travel-hero::before{display:none}
+  .mobile-hero-title{display:block;position:absolute;top:22px;left:20px;right:20px;margin:0;color:var(--ink);font:var(--type-3)/1.15 Georgia,serif;text-align:center;text-shadow:0 1px 0 var(--cream)}
+  .travel-hero .pamphlet-intro{position:relative;display:flex;flex-direction:column;align-items:center;margin:-70px auto 0;padding:0 20px;color:var(--ink)}
+  .pamphlet-intro>p{order:2;margin:10px 0 4px;font-size:var(--type-1);text-shadow:none}
+  .pamphlet-intro .pamphlet-cover{order:1;width:180px;margin-bottom:12px;padding:10px}
+  .pamphlet-intro .pamphlet-cover.paper-cover-live{width:170px;padding:0;margin-bottom:64px}
+  .paper-cover-live .cover-action{left:50%;width:270px;transform:translateX(-50%);padding-top:18px;color:var(--ink);min-height:44px}
+  .pamphlet-intro .pamphlet-skip{order:3;color:var(--ink);line-height:1.5}
+  .pamphlet-cover:not(.paper-cover-live) .cover-greeting{font-size:var(--type-0);padding:10px 4px 4px}
+  .pamphlet-cover:not(.paper-cover-live) .cover-title{font-size:var(--type-3);padding-bottom:8px}
+  .pamphlet-cover:not(.paper-cover-live) .cover-picture{height:100px}
+  .pamphlet-cover:not(.paper-cover-live) .cover-bottom{padding:10px 4px;flex-wrap:wrap}
+}
