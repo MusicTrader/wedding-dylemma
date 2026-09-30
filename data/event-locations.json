@@ -1,0 +1,18 @@
+{
+  "pier55": {
+    "name": "Argosy Cruises, Pier 55",
+    "address": "1101 Alaskan Way, Seattle, WA 98101",
+    "longitude": -122.339997237496,
+    "latitude": 47.6047622694738,
+    "coordinateSource": "City of Seattle Landmarks: Pier 55",
+    "addressSource": "https://www.argosycruises.com/contact/"
+  },
+  "axis": {
+    "name": "AXIS Pioneer Square",
+    "address": "308 1st Ave S, Seattle, WA 98104",
+    "longitude": -122.333795679287,
+    "latitude": 47.599788575985,
+    "coordinateSource": "City of Seattle Address Point geocoder, score 100, PointAddress",
+    "addressSource": "https://axispioneersquare.com/contact-us/"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "downloadedAt": "2026-09-30T21:37:40.966131+00:00",
+  "queryBounds": [
+    -122.38669049249759,
+    47.576184812552405,
+    -122.2903095075024,
+    47.6418151874476
+  ],
+  "layers": {
+    "streets": {
+      "url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Seattle_Streets_1/FeatureServer/0",
+      "featureCount": 5683,
+      "credits": "Seattle Dept of Transportation, multiple Divisions."
+    },
+    "parks": {
+      "url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Park_Boundaries/FeatureServer/2",
+      "featureCount": 849,
+      "credits": "Seattle Parks and Recreation"
+    },
+    "buildings": {
+      "url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Building_Outline_2015/FeatureServer/0",
+      "featureCount": 59024,
+      "credits": "GeoTerra"
+    }
+  }
+}

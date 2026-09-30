@@ -1,0 +1,65 @@
+{
+  "width": 3400,
+  "height": 3400,
+  "overviewWidth": 1600,
+  "overviewHeight": 1300,
+  "rotation": 0,
+  "verticalCompression": 1,
+  "pixelsPerMeter": 0.48,
+  "places": {
+    "cruise": {
+      "x": 1646.0632,
+      "y": 1926.4372,
+      "longitude": -122.339997237496,
+      "latitude": 47.6047622694738
+    },
+    "venue": {
+      "x": 1869.4694,
+      "y": 2192.1995,
+      "longitude": -122.333795679287,
+      "latitude": 47.599788575985
+    },
+    "alexis": {
+      "x": 1761.379,
+      "y": 1924.5299,
+      "longitude": -122.336796172178,
+      "latitude": 47.604797963352
+    },
+    "hotel1000": {
+      "x": 1786.3757,
+      "y": 1911.0948,
+      "longitude": -122.336102286556,
+      "latitude": 47.60504940054
+    },
+    "populus": {
+      "x": 1869.6549,
+      "y": 2258.0936,
+      "longitude": -122.333790531194,
+      "latitude": 47.598555381405
+    }
+  },
+  "regional": {
+    "width": 3000,
+    "height": 1600,
+    "overviewWidth": 900,
+    "overviewHeight": 700,
+    "center": {
+      "x": 1500.0,
+      "y": 800.0
+    }
+  },
+  "regionalPlaces": {
+    "airport": {
+      "x": 1488.6893,
+      "y": 1091.7333,
+      "longitude": -122.305027,
+      "latitude": 47.44748
+    },
+    "arrival": {
+      "x": 1423.9597,
+      "y": 584.0381,
+      "longitude": -122.333795679287,
+      "latitude": 47.599788575985
+    }
+  }
+}

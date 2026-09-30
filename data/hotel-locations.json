@@ -1,0 +1,26 @@
+{
+  "alexis": {
+    "name": "The Alexis Royal Sonesta Hotel Seattle",
+    "address": "1007 1st Ave, Seattle, WA 98104",
+    "longitude": -122.336796172178,
+    "latitude": 47.604797963352,
+    "coordinateSource": "City of Seattle Address Point geocoder, score 100",
+    "addressSource": "https://www.sonesta.com/royal-sonesta/wa/seattle/alexis-royal-sonesta-hotel-seattle"
+  },
+  "hotel1000": {
+    "name": "Hotel 1000",
+    "address": "1000 1st Ave, Seattle, WA 98104",
+    "longitude": -122.336102286556,
+    "latitude": 47.60504940054,
+    "coordinateSource": "City of Seattle Address Point geocoder, score 100",
+    "addressSource": "https://www.hotel1000seattle.com/"
+  },
+  "populus": {
+    "name": "Populus Seattle",
+    "address": "100 S King St, Seattle, WA 98104",
+    "longitude": -122.333790531194,
+    "latitude": 47.598555381405,
+    "coordinateSource": "City of Seattle Address Point geocoder, score 100",
+    "addressSource": "https://populusseattle.com/contact/"
+  }
+}

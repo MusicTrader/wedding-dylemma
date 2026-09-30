@@ -1,0 +1,19 @@
+{
+  "downloadedAt": "2026-09-30T21:47:43.718211+00:00",
+  "bounds": [
+    -122.96666666666667,
+    47.295,
+    -121.63333333333334,
+    47.775
+  ],
+  "layers": {
+    "roads": {
+      "url": "https://services.arcgis.com/Ej0PsM5Aw677QF1W/ArcGIS/rest/services/SiteAddressPoints_Distribution/FeatureServer/1",
+      "featureCount": 8557
+    },
+    "water": {
+      "url": "https://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/MajorShorelinesData/FeatureServer/0",
+      "featureCount": 2
+    }
+  }
+}
