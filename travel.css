@@ -264,3 +264,23 @@ body.pamphlet-open{overflow:hidden}
  .mobile-app-bar>a:active{background:#17354518}.mobile-app-bar>button:active{background:var(--rust)}
  .travel-footer{padding-bottom:28px}
 }
+
+/* Portrait engagement photo: faces along the upper third, invitation beside them. */
+@media(min-width:761px){
+ .travel-hero{min-height:620px;height:78svh;max-height:820px;padding:36px 3vw}
+ .travel-hero-image{object-position:50% 24%}
+ .travel-hero::before{background:linear-gradient(90deg,transparent 65%,#17354570 100%)}
+ .travel-hero .pamphlet-intro{width:24%;max-width:300px;margin:0 0 0 auto}
+ .travel-hero .pamphlet-cover{width:clamp(160px,17vw,240px)}
+ .travel-hero .pamphlet-intro>p{font-size:18px;margin-bottom:18px}
+ .travel-hero .pamphlet-skip{font-size:16px}
+}
+@media(max-width:760px){
+ .travel-hero-image{height:clamp(560px,85svh,820px);object-position:50% 42%}
+ .travel-hero .pamphlet-intro{margin-top:-24px}
+}
+@media(min-width:761px){
+ .travel-hero .pamphlet-intro>p{color:var(--ink);text-shadow:0 1px var(--cream)}
+ .travel-hero .paper-cover-live .cover-action{background:var(--cream);color:var(--ink);padding:10px 6px;margin-top:12px;gap:10px}
+ .travel-hero .pamphlet-skip{color:var(--ink);background:var(--cream);padding:6px 10px;text-shadow:none}
+}
