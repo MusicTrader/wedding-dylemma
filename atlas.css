@@ -200,3 +200,16 @@
 }
 
 @media(max-width:760px){.mobile-map .guide-option strong em{margin-left:6px}}
+
+/* Separate the place label and category row; never wrap the mobile controls. */
+@media(max-width:760px){
+ .guide-dialog.mobile-map .map-topbar{top:calc(16px + env(safe-area-inset-top,0px));left:16px;right:16px;height:44px;padding:0;align-items:center}
+ .mobile-map #guide-dialog-title{display:inline-flex;align-items:center;gap:8px;flex:0 0 auto;white-space:nowrap;height:44px;padding:0 14px}
+ .mobile-map #guide-dialog-title::after{line-height:1}.mobile-map .atlas-monogram{display:inline-flex;align-items:center;margin:0;line-height:1}
+ .guide-dialog.mobile-map .guide-close{height:44px;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}.mobile-map .guide-close span{margin:0}
+ .mobile-map>.guide-mode-tabs{top:calc(76px + env(safe-area-inset-top,0px));left:16px;right:16px;gap:8px;overflow-x:auto;scrollbar-width:none;padding:0 0 4px;align-items:center}
+ .mobile-map>.guide-mode-tabs::-webkit-scrollbar{display:none}
+ .guide-dialog.mobile-map .guide-mode{flex:1 0 auto;min-width:max-content;min-height:44px;padding:11px 14px;white-space:nowrap}
+ .guide-dialog.mobile-map .guide-mode span{font-size:16px;line-height:20px;text-transform:none;letter-spacing:0;white-space:nowrap}
+ .mobile-map .atlas-compass{top:calc(140px + env(safe-area-inset-top,0px))}
+}

@@ -7,11 +7,12 @@ function setupMobileMap(dialog, atlas) {
   handle.innerHTML='<span aria-hidden="true"></span><span class="sheet-handle-label">More details</span>';
   handle.setAttribute('aria-controls','mobile-map-sheet-content');panel.prepend(handle);detail.id='mobile-map-sheet-content';
   let state=0, drag=null, moved=false;
-  const stops=()=>{const h=dialog.clientHeight||innerHeight,max=Math.max(180,h-132);return [Math.min(250,max),Math.min(Math.max(300,h*.57),max),max];};
+  const topInset=()=>Math.max(136,tabs.getBoundingClientRect().bottom-dialog.getBoundingClientRect().top+12);
+  const stops=()=>{const h=dialog.clientHeight||innerHeight,max=Math.max(180,h-topInset());return [Math.min(250,max),Math.min(Math.max(300,h*.57),max),max];};
   function layout(height=stops()[state]) {
     if(!mobile.matches){atlas.padding={top:0,bottom:0};atlas.render();return;}
     dialog.style.setProperty('--map-sheet-height',`${height}px`);
-    atlas.padding={top:126,bottom:height};atlas.render();
+    atlas.padding={top:topInset(),bottom:height};atlas.render();
   }
   function snap(next) {
     state=Math.max(0,Math.min(2,next));panel.dataset.sheet=String(state);
