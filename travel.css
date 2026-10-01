@@ -355,3 +355,13 @@ body.pamphlet-open{overflow:hidden}
  .postcard-postage{margin-top:-18px;margin-bottom:16px}
  .postcard-address-lines{font-size:22px}
 }
+
+/* Lettering follows real curves, like a printed souvenir postcard. */
+.travel-hero .hero-postcard-lettering h1{margin:0;width:clamp(440px,44vw,680px);max-width:100%;text-shadow:none}
+.hero-curved-title{display:block;width:100%;height:auto;overflow:visible;fill:currentColor;filter:drop-shadow(2px 3px 0 #17354599)}
+.hero-curved-title text{font:900 100px Georgia,serif;letter-spacing:-3px}
+.hero-postcard-greeting{margin-bottom:0}
+@media(max-width:760px){
+ .travel-hero .hero-postcard-lettering h1{width:270px;margin:0 auto}
+ .hero-curved-title{filter:drop-shadow(1px 1px 0 var(--cream))}
+}

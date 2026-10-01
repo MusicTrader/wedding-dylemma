@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="atlas.css?v=map-selection-1" />
     <script src="icons.js?v=app-bar-1" defer></script>
     <script src="atlas.js?v=gentle-camera-1" defer></script>
-    <link rel="stylesheet" href="travel.css?v=postcard-reverse-1" />
+    <link rel="stylesheet" href="travel.css?v=curved-title-1" />
     <script src="mobile-map.js?v=2" defer></script>
     <script src="script.js?v=app-bar-1" defer></script>
   </head>
@@ -32,8 +32,16 @@
         </picture>
         <div class="hero-postcard-lettering">
           <p class="hero-postcard-greeting">Greetings from our next adventure</p>
-          <h1 id="hero-postcard-title">Wedding<br />Dylemma</h1>
-          <p class="hero-postcard-signature">Dylan &amp; Emma · Seattle</p>
+          <h1 id="hero-postcard-title" aria-label="Wedding Dylemma">
+            <svg class="hero-curved-title" viewBox="0 0 640 240" aria-hidden="true" focusable="false">
+              <defs>
+                <path id="hero-wedding-arc" d="M35 115 Q320 35 605 115" />
+                <path id="hero-dylemma-arc" d="M25 225 Q320 145 615 225" />
+              </defs>
+              <text><textPath href="#hero-wedding-arc" startOffset="50%" text-anchor="middle" textLength="565" lengthAdjust="spacingAndGlyphs">WEDDING</textPath></text>
+              <text><textPath href="#hero-dylemma-arc" startOffset="50%" text-anchor="middle" textLength="585" lengthAdjust="spacingAndGlyphs">DYLEMMA</textPath></text>
+            </svg>
+          </h1>
         </div>
         <div class="pamphlet-intro"><p>A little love. A lot of Seattle.</p><button class="pamphlet-cover" id="pamphlet-open" type="button" aria-haspopup="dialog" aria-controls="pamphlet-dialog"><span class="cover-greeting">You’re invited to</span><span class="cover-title" id="invitation-title" role="heading" aria-level="2">SEATTLE</span><span class="cover-picture"><img id="pamphlet-cover-photo" src="assets/pamphlet-flight.jpg" alt="Seattle skyline and Lake Union seen through a seaplane cockpit" /></span><span class="cover-bottom">Wedding Dylemma<span aria-hidden="true"><span class="print-icon" data-print-icon="star" aria-hidden="true"></span></span></span><span class="cover-action">Open your invitation <span aria-hidden="true"><span class="print-icon" data-print-icon="ne" aria-hidden="true"></span></span></span></button><a class="pamphlet-skip" href="#weekend">Or go straight to the weekend plans <span class="print-icon" data-print-icon="down" aria-hidden="true"></span></a></div>
       </section>
