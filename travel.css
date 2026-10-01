@@ -284,3 +284,9 @@ body.pamphlet-open{overflow:hidden}
  .travel-hero .paper-cover-live .cover-action{background:var(--cream);color:var(--ink);padding:10px 6px;margin-top:12px;gap:10px}
  .travel-hero .pamphlet-skip{color:var(--ink);background:var(--cream);padding:6px 10px;text-shadow:none}
 }
+
+.travel-hero-photo{display:contents}
+/* Use the entire portrait width on desktop; only trim its top and bottom. */
+@media(min-width:761px){
+ .travel-hero-image{height:auto;inset:auto;left:0;top:24%;transform:translateY(-24%);object-fit:initial}
+}
