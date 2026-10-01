@@ -190,3 +190,41 @@ body.pamphlet-open{overflow:hidden}
 .paper-live-stage.is-open{position:fixed;inset:0;z-index:5}
 .print-icon{display:inline-block;width:1em;height:1em;vertical-align:-.12em;flex-shrink:0;line-height:1}
 .print-icon svg{display:block;width:100%;height:100%;overflow:visible}
+
+/* Die-cut boarding passes, with a separate perforated admission stub. */
+.travel-itinerary{grid-template-columns:1fr;gap:28px}
+.travel-ticket,.travel-ticket:first-child,.travel-ticket:last-child,.travel-ticket.ticket-wedding{display:block;padding:0;border:0;background:none;box-shadow:none;filter:drop-shadow(4px 5px 0 #17354530);--stub:120px;--ticket-paper:var(--water-paper)}
+.travel-ticket.ticket-wedding{--ticket-paper:var(--sun-paper)}
+.travel-ticket:last-child{--ticket-paper:var(--olive-paper)}
+.travel-ticket::before,.travel-ticket::after{content:none}
+.ticket-stock{display:grid;grid-template-columns:var(--stub) minmax(0,1fr);position:relative;border-radius:14px;overflow:hidden;background:linear-gradient(var(--ink),var(--ink)) bottom/100% 9px no-repeat,var(--ticket-paper);padding-bottom:9px;-webkit-mask-image:radial-gradient(circle at var(--stub) 0,transparent 11px,#000 11.7px),radial-gradient(circle at var(--stub) 100%,transparent 11px,#000 11.7px);mask-image:radial-gradient(circle at var(--stub) 0,transparent 11px,#000 11.7px),radial-gradient(circle at var(--stub) 100%,transparent 11px,#000 11.7px);-webkit-mask-composite:source-in;mask-composite:intersect}
+.ticket-stock::after{content:'';position:absolute;top:19px;bottom:19px;left:calc(var(--stub) - 1px);width:2px;background:repeating-linear-gradient(to bottom,#17354570 0 3px,transparent 3px 10px);pointer-events:none}
+.ticket-band{grid-column:1/-1;display:flex;justify-content:space-between;gap:20px;background:var(--ink);color:var(--cream);padding:10px 24px;font-size:var(--type-0);line-height:1.3;letter-spacing:.04em}
+.ticket-stub{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;padding:24px 12px;background:#f3e4bf30}
+.ticket-day{font-size:var(--type-0);font-weight:700}.ticket-number{font:var(--type-5)/1 Georgia,serif;color:var(--ink)}
+.ticket-stub .event-symbol{width:32px;height:32px}
+.ticket-serial{font:var(--type-0)/1.3 monospace;white-space:nowrap}
+.ticket-barcode{height:26px;width:70px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 8px,var(--ink) 8px 12px,transparent 12px 14px,var(--ink) 14px 15px,transparent 15px 18px);opacity:.8}
+.ticket-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:32px;align-content:center;padding:26px 32px;background:linear-gradient(135deg,transparent 85%,#17354506 85%)}
+.travel-ticket h3{grid-column:1;font-size:var(--type-3);margin:0 0 12px;letter-spacing:-.025em}
+.travel-ticket .ticket-time{grid-column:1;margin:0 0 12px;color:var(--rust)}
+.ticket-body>p:not(.ticket-time){grid-column:1;margin:0}
+.ticket-body>address,.ticket-body>.ticket-pending{grid-column:2;grid-row:1/4;margin:0;align-self:center}
+.ticket-body>.travel-link{grid-column:1/-1;justify-self:start;margin-top:18px;text-align:left}
+@media(max-width:700px){
+ .travel-ticket,.travel-ticket:first-child,.travel-ticket:last-child,.travel-ticket.ticket-wedding{--stub:70px}
+ .ticket-band{padding:10px 15px;letter-spacing:0;gap:8px}.ticket-band span:last-child{display:none}
+ .ticket-stock{border-radius:11px}
+ .ticket-stub{padding:22px 6px;gap:18px;justify-content:flex-start}
+ .ticket-number{font-size:var(--type-4)}.ticket-day{writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.08em}
+ .ticket-stub .event-symbol{width:26px;height:26px}.ticket-barcode{width:42px;margin-top:auto}.ticket-serial{display:none}
+ .ticket-body{display:flex;flex-direction:column;gap:0;padding:22px 18px 24px}
+ .travel-ticket h3{font-size:var(--type-2);margin-bottom:12px}
+ .ticket-body>address,.ticket-body>.ticket-pending{align-self:stretch;margin-top:16px}
+ .ticket-body>.travel-link{margin-top:18px;align-self:flex-start}
+}
+
+.ticket-band{display:grid;grid-template-columns:var(--stub) minmax(0,1fr);gap:0;padding:10px 0}
+.ticket-band-stub{text-align:center;letter-spacing:.1em}
+.ticket-band-title{display:flex;justify-content:space-between;gap:16px;padding:0 32px}
+@media(max-width:700px){.ticket-band span:last-child{display:flex}.ticket-band-title{padding:0 18px}.ticket-band-title span:last-child{display:none}}
