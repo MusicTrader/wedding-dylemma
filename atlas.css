@@ -51,6 +51,8 @@
 .atlas-heading h2{font:900 clamp(60px,8.7vw,146px)/.95 Impact,'Arial Narrow',sans-serif;letter-spacing:.075em;margin:7px 0 9px 10px;color:#203d49;-webkit-text-stroke:1.3px #e6bc72;paint-order:stroke fill;text-shadow:2px 2px #e6bc72,4px 4px #294952}
 .atlas-heading p{font:italic 15px/1.3 Georgia,serif;color:#f3e6bf;margin:0}
 .atlas-viewport{position:relative;flex:1;min-height:0;overflow:clip;background:#639b99;cursor:grab;touch-action:none;border-inline:1px solid #294952;isolation:isolate}
+/* Keep double-clicks and drags from selecting the map in Safari and other browsers. */
+.atlas-viewport,.atlas-viewport *{-webkit-user-select:none;user-select:none}
 .atlas-viewport.is-dragging{cursor:grabbing}
 .atlas-viewport::after{content:"";position:absolute;inset:0;z-index:5;pointer-events:none;box-shadow:inset 0 0 75px #29495219}
 /* A seeded, stationary texture sits above the guide, outside the moving map. */
