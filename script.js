@@ -216,3 +216,24 @@ document.getElementById('pamphlet-read-all').addEventListener('click', async () 
   weekend.focus({preventScroll:true});
   weekend.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
 });
+
+// Reflect the current page section without adding history entries while scrolling.
+const appLinks=[...document.querySelectorAll('[data-nav-section]')];
+let appNavFrame=0;
+function updateAppNavigation(){
+  appNavFrame=0;
+  if(innerWidth>760)return;
+  let current='top';
+  for(const link of appLinks){
+    if(link.dataset.navSection==='top')continue;
+    if(document.getElementById(link.dataset.navSection).getBoundingClientRect().top<innerHeight*.35)current=link.dataset.navSection;
+  }
+  for(const link of appLinks){
+    if(link.dataset.navSection===current)link.setAttribute('aria-current','location');
+    else link.removeAttribute('aria-current');
+  }
+}
+function queueAppNavigation(){if(!appNavFrame)appNavFrame=requestAnimationFrame(updateAppNavigation);}
+window.addEventListener('scroll',queueAppNavigation,{passive:true});
+window.addEventListener('resize',queueAppNavigation);
+updateAppNavigation();

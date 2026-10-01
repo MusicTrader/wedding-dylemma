@@ -11,11 +11,11 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="atlas.css?v=map-header-2" />
-    <script src="icons.js?v=1" defer></script>
+    <script src="icons.js?v=app-bar-1" defer></script>
     <script src="atlas.js?v=gentle-camera-1" defer></script>
-    <link rel="stylesheet" href="travel.css?v=tickets-compact-1" />
+    <link rel="stylesheet" href="travel.css?v=app-bar-1" />
     <script src="mobile-map.js?v=2" defer></script>
-    <script src="script.js?v=gentle-camera-1" defer></script>
+    <script src="script.js?v=app-bar-1" defer></script>
   </head>
   <body id="top">
     <div class="film-grain" aria-hidden="true"></div>
@@ -99,5 +99,12 @@
           <div class="map-footnote"><details class="atlas-sources"><summary>About this map &amp; data</summary><p>Real streets, shorelines and venue coordinates. Extended coverage includes Seattle Center, Lake Union, Capitol Hill and SODO. <a href="https://data-seattlecitygis.opendata.arcgis.com/" target="_blank" rel="noopener noreferrer">City of Seattle GIS</a> · <a href="https://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/MajorShorelinesData/FeatureServer/0" target="_blank" rel="noopener noreferrer">WSDOT shorelines</a> · <a href="https://gis-kingcounty.opendata.arcgis.com/" target="_blank" rel="noopener noreferrer">King County</a> · <a href="https://www.soundtransit.org/help-contacts/business-information/open-transit-data-otd" target="_blank" rel="noopener noreferrer">Sound Transit</a>. Building outlines: 2015 imagery, GeoTerra / City of Seattle; shown as flat footprints. Ferry illustration is decorative. Routes are saved planning snapshots, not live directions.</p></details></div>
         </dialog>
     <footer class="travel-footer"><a href="#top">Wedding Dylemma <span>DYLAN &amp; EMMA · WITH LOVE, ALWAYS.</span></a><p>A little love. A lot of Seattle.</p><a href="#top">Back to top <span class="print-icon" data-print-icon="up" aria-hidden="true"></span></a></footer>
+    <nav class="mobile-app-bar" aria-label="Main navigation">
+      <a href="#top" data-nav-section="top" aria-current="location"><span class="print-icon" data-print-icon="home" aria-hidden="true"></span><span>Home</span></a>
+      <a href="#weekend" data-nav-section="weekend"><span class="print-icon" data-print-icon="calendar" aria-hidden="true"></span><span>Weekend</span></a>
+      <button type="button" data-open-map="cruise" aria-haspopup="dialog" aria-controls="guide-dialog"><span class="print-icon" data-print-icon="map" aria-hidden="true"></span><span>Map</span></button>
+      <a href="#travel" data-nav-section="travel"><span class="print-icon" data-print-icon="plane" aria-hidden="true"></span><span>Travel</span></a>
+      <a href="#rsvp" data-nav-section="rsvp"><span class="print-icon" data-print-icon="mail" aria-hidden="true"></span><span>RSVP</span></a>
+    </nav>
   </body>
 </html>

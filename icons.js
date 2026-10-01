@@ -1,6 +1,10 @@
 // Draw print ornaments as paths, independent of the device's emoji fonts.
 window.WeddingIcons = (() => {
   const paths = {
+    home: 'M3 11L12 3L21 11M5 10V21H10V15H14V21H19V10',
+    calendar: 'M4 5H20V21H4ZM8 3V7M16 3V7M4 10H20M8 14H10M14 14H16M8 18H10',
+    map: 'M3 5L9 3L15 5L21 3V19L15 21L9 19L3 21ZM9 3V19M15 5V21',
+    mail: 'M3 5H21V19H3ZM3 6L12 13L21 6',
     ne: 'M5 19L19 5M5 5H19V19',
     down: 'M12 3V21M5 14L12 21L19 14',
     up: 'M12 21V3M5 10L12 3L19 10',
