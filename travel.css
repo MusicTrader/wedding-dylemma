@@ -314,3 +314,13 @@ body.pamphlet-open{overflow:hidden}
  .travel-hero .hero-postcard-lettering h1{font-size:clamp(30px,8.5vw,46px);line-height:.95;color:var(--ink);text-shadow:1px 1px var(--cream);margin-bottom:7px}
  .hero-postcard-signature{font-size:16px}
 }
+
+/* Let the postcard fill the first screen; keep just two floating desktop actions. */
+@media(min-width:761px){
+ html{scroll-padding-top:24px}
+ .travel-header{position:fixed;top:28px;right:4vw;left:auto;padding:0;background:transparent;border:0;gap:0;pointer-events:none}
+ .travel-header .travel-brand,.travel-header nav>a:not(.rsvp-stamp){display:none}
+ .travel-header nav{gap:20px;pointer-events:auto}
+ .travel-header nav button{background:var(--ink);color:var(--cream);padding:12px 18px;min-height:48px}
+ .travel-hero{height:100svh;min-height:700px;max-height:none;padding-top:120px;padding-bottom:40px}
+}
