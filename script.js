@@ -84,6 +84,7 @@ let guideReturnTo = guideOpen;
 let selectedPlace = 'cruise';
 
 const atlas = new SeattleAtlas((place) => showPlace(place));
+const mobileMap = setupMobileMap(guideDialog, atlas);
 
 function showPlace(place) {
   const content = places[place];
@@ -110,15 +111,16 @@ function showPlace(place) {
   document.querySelector('.atlas-list-heading p').textContent = introduction;
   detailTitle.textContent = content.title;
   detailCopy.textContent = content.copy;
-  detailNote.textContent = content.note;
+  detailNote.textContent = window.innerWidth<=760 && place==='cruise' ? 'Friday · 6–9 PM' : content.note;
   detailLink.hidden = !content.directions;
   priceSources.hidden = content.mode !== 'travel';
-  if (content.directions) { detailLink.href = content.directions; WeddingIcons.setText(detailLink, content.linkText); }
+  if (content.directions) { detailLink.href = content.directions; WeddingIcons.setText(detailLink, window.innerWidth<=760 && content.linkText.startsWith("Open directions") ? "Directions ↗" : content.linkText); }
   placeControls.forEach((control) => {
     const active = control.dataset.place === place;
     control.classList.toggle('active', active);
     control.setAttribute('aria-pressed', String(active));
   });
+  mobileMap.select();
   atlas.show(place, content.mode);
   if (guideDialog.open && window.innerWidth <= 760) {
     const card = document.querySelector(`.guide-option[data-place="${place}"]`);
@@ -137,6 +139,7 @@ function openGuide(place, trigger) {
   guideReturnTo = trigger || guideOpen;
   if (!guideDialog.open) guideDialog.showModal();
   document.body.classList.add('guide-open');
+  mobileMap.open();
   showPlace(place);
   atlas.render();
   guideClose.focus({preventScroll:true});

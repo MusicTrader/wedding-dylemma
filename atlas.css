@@ -156,3 +156,47 @@
 .atlas-pin-alexis::before,.atlas-pin-hotel1000::before{left:22px}
 @media(max-width:760px){.atlas-pin-label{left:49px}.atlas-pin-alexis .atlas-pin-label{right:73px}.atlas-pin-hotel1000 .atlas-pin-label{left:73px}}
 .atlas-viewport[data-regional=true] .atlas-pin-label{opacity:1;transform:none}
+
+/* Full-screen mobile map with a persistent, adjustable information sheet. */
+.map-sheet-handle{display:none}
+@media(max-width:760px){
+ .map-shell.guide-dialog.mobile-map[open]{position:fixed;inset:0;display:block;width:100%;max-width:none;height:100dvh;max-height:none;margin:0;padding:0;border:0;border-radius:0;overflow:hidden;--map-sheet-height:250px}
+ .guide-dialog.mobile-map .guide-layout .map-stage{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;display:block}
+ .mobile-map .atlas-heading,.mobile-map .atlas-ribbon,.mobile-map .atlas-help,.mobile-map .atlas-map-caption{display:none}
+ .mobile-map .atlas-viewport{position:absolute;inset:0;border:0}
+ .mobile-map .map-topbar{position:absolute;top:env(safe-area-inset-top,0px);left:12px;right:12px;width:auto;height:52px;z-index:12;border:0;background:none;padding:6px 0;font-size:16px;pointer-events:none}
+ .mobile-map #guide-dialog-title{background:var(--cream);padding:10px 12px;box-shadow:2px 2px 0 #17354525;border-radius:4px;font-size:0}
+ .mobile-map #guide-dialog-title::after{content:'Seattle';font-size:20px;font-family:Georgia,serif}.mobile-map .atlas-monogram{font-size:20px}
+ .mobile-map .guide-close{pointer-events:auto;min-height:44px;min-width:44px;padding:0 12px;background:var(--cream);box-shadow:2px 2px 0 #17354525;border-radius:4px;font-size:0}.mobile-map .guide-close::after{content:'Back';font-size:16px}.mobile-map .guide-close span{font-size:24px;margin-right:5px}
+ .mobile-map>.guide-mode-tabs{position:absolute;top:calc(60px + env(safe-area-inset-top,0px));left:12px;right:12px;display:flex;z-index:12;gap:6px;padding:0;border:0;background:none}
+ .mobile-map .guide-mode{flex:1;min-height:44px;padding:8px 4px;border:1px solid #b9a77f;border-radius:24px;background:var(--cream);font-size:0;color:var(--ink)}
+ .mobile-map .guide-mode span{font:600 16px/1.2 'DM Sans',sans-serif;letter-spacing:0;margin:0}.mobile-map .guide-mode.active{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+ .guide-dialog.mobile-map .guide-layout .map-panel{position:absolute;inset:auto 0 0;width:100%;height:var(--map-sheet-height);max-height:none;z-index:15;display:flex;flex-direction:column;border:1px solid #b9a77f;border-bottom:0;border-radius:20px 20px 0 0;background:var(--cream);padding:0 0 env(safe-area-inset-bottom,0px);box-shadow:0 -4px 18px #17354525;overflow:auto;overscroll-behavior:contain}
+ .mobile-map .map-sheet-handle{display:flex;flex:none;order:0;align-items:center;justify-content:center;gap:12px;min-height:44px;width:100%;padding:8px 16px;background:var(--cream);color:var(--ink);border:0;touch-action:none;cursor:ns-resize;position:sticky;top:0;z-index:2}
+ .map-sheet-handle>span:first-child{height:4px;width:38px;border-radius:4px;background:#8b967e}.sheet-handle-label{font:600 16px/1.3 'DM Sans',sans-serif}
+ .mobile-map .map-panel .map-detail{order:1;flex:none;display:flex;flex-direction:column;max-height:none;overflow:visible;padding:0 20px 12px;background:none;border:0;color:var(--ink)}
+ .mobile-map .map-detail h3{font:25px/1.2 Georgia,serif;color:var(--ink);margin:0 0 6px}
+ .mobile-map .map-detail p{font:16px/1.5 'DM Sans',sans-serif;color:var(--ink);min-height:0;margin:12px 0 0}
+ .mobile-map .map-detail-actions{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;margin-top:0}
+ .mobile-map .map-detail-note{font:16px/1.35 'DM Sans',sans-serif;color:#455647;letter-spacing:0}
+ .mobile-map .map-detail-link{font:600 16px/1.3 'DM Sans',sans-serif;letter-spacing:0;min-height:44px;display:inline-flex;align-items:center;gap:6px;color:var(--ink);flex-shrink:0}
+ .mobile-map .map-detail-link[hidden]{display:none}
+ .mobile-map .map-panel[data-sheet="0"] .map-detail-copy-block>p,.mobile-map .map-panel[data-sheet="0"] .map-price-sources,.mobile-map .map-panel[data-sheet="0"] .map-footnote{display:none}
+ .mobile-map .guide-panel-scroll{order:2;flex:none;overflow:visible;padding:0 0 12px;height:auto}
+ .mobile-map .guide-options{padding:0 20px 6px;gap:8px;scroll-padding-inline:20px}
+ .mobile-map .guide-option{flex:0 0 auto;width:auto;min-width:135px;min-height:64px;padding:8px 12px;border-radius:6px}
+ .mobile-map .guide-option span{font-size:16px;letter-spacing:0;margin:0 0 4px}.mobile-map .guide-option strong{font:600 16px/1.25 'DM Sans',sans-serif;letter-spacing:0}.mobile-map .guide-option small,.mobile-map .guide-option .event-symbol{display:none}
+ .mobile-map .guide-option .day-option-top>span{font-weight:400;font-size:16px}.mobile-map .guide-option strong em{font-size:16px}
+ .mobile-map .map-panel .map-footnote{order:3;flex:none;padding:12px 20px;background:none;color:var(--ink);font-size:16px;border-top:1px solid #b9a77f}.mobile-map .atlas-sources p{font-size:16px;max-height:none}.mobile-map .atlas-sources[open]{max-height:none}.mobile-map .atlas-sources a,.mobile-map .map-price-sources a{color:var(--rust)}
+ .mobile-map .atlas-controls{bottom:calc(var(--map-sheet-height) + 16px);right:12px}.mobile-map .atlas-controls button{width:44px;height:44px}
+ .mobile-map .atlas-compass{top:122px;left:20px}.mobile-map .atlas-pin-label{font-size:14px;max-width:230px;white-space:normal}.mobile-map .atlas-marker{font-size:16px}
+}
+@media(max-width:760px){
+ .guide-dialog.mobile-map .map-detail .map-detail-actions{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;margin-top:0}
+ .guide-dialog.mobile-map .map-detail .map-detail-note{font-size:16px;line-height:1.35}
+ .guide-dialog.mobile-map .map-detail .map-detail-link{font-size:16px;letter-spacing:0;text-transform:none;max-width:48%;white-space:normal}
+ .guide-dialog.mobile-map .guide-mode{text-transform:none;letter-spacing:0}
+ .mobile-map .atlas-pin.active .atlas-pin-label{bottom:60px}
+}
+
+@media(max-width:760px){.mobile-map .guide-option strong em{margin-left:6px}}

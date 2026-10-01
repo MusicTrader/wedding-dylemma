@@ -34,7 +34,7 @@ class SeattleAtlas {
   get baseScale() {
     if(this.regional) {
       const view=this.layout?.regional || {overviewWidth:900,overviewHeight:700};
-      return Math.min(this.viewport.clientWidth/view.overviewWidth,this.viewport.clientHeight/view.overviewHeight);
+      return Math.min(this.viewport.clientWidth/view.overviewWidth,Math.max(120,this.viewport.clientHeight-(this.padding?.top||0)-(this.padding?.bottom||0))/view.overviewHeight);
     }
     // Preserve the intimate event framing while allowing exploration of a larger atlas.
     return Math.max(this.viewport.clientWidth/(this.layout?.overviewWidth || 1600),
@@ -100,7 +100,8 @@ class SeattleAtlas {
     const clampCenter=(value,half,extent)=>half*2>=extent ? extent/2 : Math.max(half,Math.min(extent-half,value));
     this.center.x=clampCenter(this.center.x,halfWidth,width);
     this.center.y=clampCenter(this.center.y,halfHeight,height);
-    const left=w/2-this.center.x*s,top=h/2-this.center.y*s;
+    const centerY=(h+(this.padding?.top||0)-(this.padding?.bottom||0))/2;
+    const left=w/2-this.center.x*s,top=Math.max(h-height*s,Math.min(0,centerY-this.center.y*s));
     this.world.style.width=`${width}px`; this.world.style.height=`${height}px`;
     this.world.style.transform=`translate(${left}px,${top}px) scale(${s})`;
     this.viewport.dataset.regional=String(this.regional);
@@ -128,7 +129,8 @@ class SeattleAtlas {
   zoomAt(factor, point) {
     const before=this.scale;
     const x=(point?.x ?? this.viewport.clientWidth/2)-this.viewport.clientWidth/2;
-    const y=(point?.y ?? this.viewport.clientHeight/2)-this.viewport.clientHeight/2;
+    const centerY=(this.viewport.clientHeight+(this.padding?.top||0)-(this.padding?.bottom||0))/2;
+    const y=(point?.y ?? centerY)-centerY;
     this.zoom=Math.max(this.minZoom,Math.min(4,this.zoom*factor));
     const after=this.scale;
     this.center.x+=x/before-x/after;this.center.y+=y/before-y/after;
