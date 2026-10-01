@@ -120,7 +120,6 @@ function showPlace(place) {
     control.classList.toggle('active', active);
     control.setAttribute('aria-pressed', String(active));
   });
-  mobileMap.select();
   atlas.show(place, content.mode);
   if (guideDialog.open && window.innerWidth <= 760) {
     const card = document.querySelector(`.guide-option[data-place="${place}"]`);
@@ -150,6 +149,7 @@ document.querySelectorAll('[data-open-map]').forEach(trigger => {
 atlas.ready.then(() => { if (guideDialog.open) showPlace(selectedPlace); });
 guideClose.addEventListener('click', () => guideDialog.close());
 guideDialog.addEventListener('close', () => {
+  atlas.stopMotion();
   document.body.classList.remove('guide-open');
   (guideReturnTo?.isConnected ? guideReturnTo : guideOpen).focus({preventScroll:true});
   paperModel?.restoreFocus(guideReturnTo);

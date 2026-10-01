@@ -27,7 +27,7 @@ class SeattleAtlas {
       this.status.hidden = false;
       this.render();
     });
-    new ResizeObserver(() => this.render()).observe(this.viewport);
+    new ResizeObserver(() => { this.stopMotion(); this.render(); }).observe(this.viewport);
   }
   get regional() { return this.mode === 'travel'; }
   get dimensions() { return this.regional ? (this.layout?.regional || {width:3000,height:1600}) : (this.layout || {width:1600,height:1300}); }
@@ -69,20 +69,37 @@ class SeattleAtlas {
     this.mode = mode; this.place = place;
     this.image.src = this.regional ? 'assets/seattle-atlas-region.svg?v=regional-expanded' : 'assets/seattle-atlas.svg';
     this.image.alt = this.regional ? 'Regional GIS map from SEA Airport to downtown Seattle' : 'Illustrated downtown Seattle map with real streets, shoreline, parks and building outlines';
-    if (wasRegional !== this.regional) this.reset();
-    else if (this.layout) {
-      if (this.regional || place === 'sunday') this.reset();
-      else {
-        const p=this.points[place];
-        // Keep some waterfront in frame while giving the selected stop breathing room.
-        this.center={x:p.x-(this.viewport.clientWidth<=600 ? 10 : 70),y:p.y};
-        this.zoom=mode==='hotels' ? 1.55 : 1.12;
-      }
+    if (wasRegional !== this.regional) { this.reset(); return; }
+    if (!this.layout || this.regional) { this.render(); return; }
+    const a=this.layout.places.cruise,b=this.layout.places.venue;
+    const overview={x:(a.x+b.x)/2-45,y:(a.y+b.y)/2};
+    const p=this.points[place];
+    // A gentle bias toward the stop keeps the surrounding weekend in view.
+    const target=p ? {x:overview.x*.65+p.x*.35,y:overview.y*.65+p.y*.35} : overview;
+    this.moveTo(target,Math.min(this.zoom,.78));
+  }
+  stopMotion() {
+    if(this.motionFrame)cancelAnimationFrame(this.motionFrame);
+    this.motionFrame=0;
+  }
+  moveTo(center,zoom) {
+    this.stopMotion();
+    const targetZoom=Math.max(this.minZoom,Math.min(4,zoom));
+    if(!this.viewport.clientWidth || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.center={...center};this.zoom=targetZoom;this.render();return;
     }
-    this.render();
+    const from={...this.center},fromZoom=this.zoom,start=performance.now();
+    const tick=now=>{
+      const t=Math.min(1,Math.max(0,(now-start)/650)),blend=t*t*(3-2*t);
+      this.center={x:from.x+(center.x-from.x)*blend,y:from.y+(center.y-from.y)*blend};
+      this.zoom=fromZoom+(targetZoom-fromZoom)*blend;this.render();
+      this.motionFrame=t<1?requestAnimationFrame(tick):0;
+    };
+    this.render();this.motionFrame=requestAnimationFrame(tick);
   }
   reset() {
-    this.zoom=1;
+    this.stopMotion();
+    this.zoom=this.regional?1:.78;
     if (this.regional) this.center={...(this.layout?.regional?.center || {x:1500,y:800})};
     else if (this.layout) {
       const a=this.layout.places.cruise,b=this.layout.places.venue;
@@ -127,6 +144,7 @@ class SeattleAtlas {
     document.getElementById('atlas-zoom-out').disabled=this.zoom<=this.minZoom+.00001;
   }
   zoomAt(factor, point) {
+    this.stopMotion();
     const before=this.scale;
     const x=(point?.x ?? this.viewport.clientWidth/2)-this.viewport.clientWidth/2;
     const centerY=(this.viewport.clientHeight+(this.padding?.top||0)-(this.padding?.bottom||0))/2;
@@ -145,6 +163,7 @@ class SeattleAtlas {
     v.addEventListener('wheel',e=>{ if(interactive(e.target))return; e.preventDefault(); const r=v.getBoundingClientRect(); this.zoomAt(Math.exp(-e.deltaY*.0015),{x:e.clientX-r.left,y:e.clientY-r.top}); },{passive:false});
     v.addEventListener('keydown',e=>{
       if(e.target!==v)return;
+      this.stopMotion();
       const delta=65/this.scale;
       if (e.key==='+'||e.key==='=')this.zoomAt(1.3);
       else if(e.key==='-')this.zoomAt(1/1.3);
@@ -158,6 +177,7 @@ class SeattleAtlas {
     });
     v.addEventListener('pointerdown',e=>{
       if(interactive(e.target)||e.button>0)return;
+      this.stopMotion();
       this.dragged=false;v.setPointerCapture(e.pointerId);
       this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
       v.classList.add('is-dragging');
