@@ -324,3 +324,34 @@ body.pamphlet-open{overflow:hidden}
  .travel-header nav button{background:var(--ink);color:var(--cream);padding:12px 18px;min-height:48px}
  .travel-hero{height:100svh;min-height:700px;max-height:none;padding-top:120px;padding-bottom:40px}
 }
+
+/* The next section is the reverse of the photographic postcard above. */
+.postcard-reverse{position:relative;display:grid;grid-template-columns:1.1fr 1fr;gap:0;padding:76px max(5vw,32px);background:#ead6ad;color:var(--ink);border-top:12px solid var(--cream);min-height:610px}
+.postcard-reverse::before{content:"";position:absolute;inset:16px;border:2px solid #a7885466;pointer-events:none}
+.postcard-reverse-note{padding:8px 6vw 8px 0}
+.postcard-reverse-kicker{font:600 16px/1.4 'DM Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);margin-bottom:26px}
+.postcard-reverse-note h2{font:400 clamp(30px,3vw,48px)/1.12 Georgia,serif;letter-spacing:-.04em;margin-bottom:28px}
+.postcard-reverse-note h2 em{color:var(--rust)}
+.postcard-reverse-note>p:not(.postcard-reverse-kicker){font:italic 20px/1.65 Georgia,serif;max-width:490px;margin-bottom:20px}
+.postcard-reverse-note .postcard-reverse-signature{font-size:25px!important;color:var(--rust);line-height:1.35!important;margin:30px 0 0}
+.postcard-reverse-address{position:relative;border-left:1px solid #92764b88;padding:0 0 0 5vw;display:flex;flex-direction:column;align-items:flex-start}
+.postcard-reverse-title{font:italic 40px/1 Georgia,serif;margin:4px 0 14px;letter-spacing:-.04em}
+.postcard-postage{display:flex;align-items:center;justify-content:flex-end;align-self:stretch;height:115px;margin-bottom:26px;gap:0}
+.postcard-postmark{width:min(65%,240px);height:110px;color:#705e43;opacity:.8;transform:rotate(-9deg);margin-right:-18px;z-index:1}
+.postcard-postage-stamp{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:86px;height:106px;flex:none;background:var(--teal);border:5px dotted var(--paper);outline:1px solid #647d70;outline-offset:-7px;color:var(--ink);transform:rotate(5deg);font:700 20px/1 Georgia,serif}
+.postcard-postage-stamp .print-icon{width:25px;height:25px}.postcard-postage-stamp small{font:600 10px/1.2 'DM Sans',sans-serif;letter-spacing:.12em}
+.postcard-address-lines{width:100%;font:italic clamp(20px,2vw,28px)/1.7 Georgia,serif}
+.postcard-address-lines>span{display:block;border-bottom:1px solid #92764b77;padding:5px 0}
+.postcard-reverse-date{font:400 16px/1.5 'DM Sans',sans-serif;color:var(--muted-ink);margin:25px 0 12px}
+@media(max-width:760px){
+ .postcard-reverse{grid-template-columns:1fr;padding:48px 30px;min-height:0;border-top-width:8px}
+ .postcard-reverse::before{inset:10px}
+ .postcard-reverse-note{padding:0 0 32px}
+ .postcard-reverse-kicker{font-size:14px;margin-bottom:20px}
+ .postcard-reverse-note h2{font-size:32px;margin-bottom:22px}
+ .postcard-reverse-note>p:not(.postcard-reverse-kicker){font-size:18px;line-height:1.6}
+ .postcard-reverse-address{border-left:0;border-top:1px solid #92764b88;padding:30px 0 0}
+ .postcard-reverse-title{font-size:36px}
+ .postcard-postage{margin-top:-18px;margin-bottom:16px}
+ .postcard-address-lines{font-size:22px}
+}
