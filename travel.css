@@ -292,7 +292,9 @@ body.pamphlet-open{overflow:hidden}
 }
 
 /* Printed postcard finish. Dialogs need their own texture in the browser top layer. */
-.film-grain{opacity:.43;z-index:1000}
+/* The paper texture spans the document and moves with it while scrolling. */
+body{position:relative}
+.film-grain{position:absolute;inset:0;opacity:.43;z-index:1000}
 .guide-dialog::after,.pamphlet-dialog::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;background:url('assets/atlas-grain.svg') repeat;background-size:220px;mix-blend-mode:overlay;opacity:.43}
 .travel-hero-image{filter:sepia(.16) saturate(.88) contrast(.96)}
 .travel-hero::after{content:"";position:absolute;inset:16px;border:9px solid var(--cream);z-index:3;pointer-events:none}
