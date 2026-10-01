@@ -290,3 +290,27 @@ body.pamphlet-open{overflow:hidden}
 @media(min-width:761px){
  .travel-hero-image{height:auto;inset:auto;left:0;top:24%;transform:translateY(-24%);object-fit:initial}
 }
+
+/* Printed postcard finish. Dialogs need their own texture in the browser top layer. */
+.film-grain{opacity:.43;z-index:1000}
+.guide-dialog::after,.pamphlet-dialog::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;background:url('assets/atlas-grain.svg') repeat;background-size:220px;mix-blend-mode:overlay;opacity:.43}
+.travel-hero-image{filter:sepia(.16) saturate(.88) contrast(.96)}
+.travel-hero::after{content:"";position:absolute;inset:16px;border:9px solid var(--cream);z-index:3;pointer-events:none}
+.hero-postcard-lettering{position:absolute;left:4vw;bottom:38px;z-index:1;color:var(--cream);pointer-events:none;text-shadow:2px 3px 0 #17354599}
+.hero-postcard-greeting{font:italic 25px/1.2 Georgia,serif;margin:0 0 8px}
+.travel-hero .hero-postcard-lettering h1{font:900 clamp(52px,6.2vw,96px)/.88 Georgia,serif;text-transform:uppercase;letter-spacing:-.045em;margin:0 0 14px;color:var(--cream);text-shadow:3px 4px 0 #17354599}
+.hero-postcard-signature{font:italic 23px/1.25 Georgia,serif;margin:0}
+@media(min-width:761px){
+ .travel-hero{padding-right:4vw}
+ .travel-hero::before{background:linear-gradient(0deg,#17354599,transparent 48%),linear-gradient(90deg,transparent 70%,#17354538)}
+ .travel-hero .pamphlet-intro>p{display:none}
+}
+@media(max-width:760px){
+ .travel-hero{--photo-height:clamp(560px,85svh,820px)}
+ .travel-hero-image{height:var(--photo-height)}
+ .travel-hero::after{inset:10px 10px auto;height:calc(var(--photo-height) - 20px);border-width:6px}
+ .hero-postcard-lettering{top:26px;left:26px;right:26px;bottom:auto;text-align:center;color:var(--ink);text-shadow:none}
+ .hero-postcard-greeting{font-size:16px;margin-bottom:5px}
+ .travel-hero .hero-postcard-lettering h1{font-size:clamp(30px,8.5vw,46px);line-height:.95;color:var(--ink);text-shadow:1px 1px var(--cream);margin-bottom:7px}
+ .hero-postcard-signature{font-size:16px}
+}

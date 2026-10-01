@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="atlas.css?v=map-selection-1" />
     <script src="icons.js?v=app-bar-1" defer></script>
     <script src="atlas.js?v=gentle-camera-1" defer></script>
-    <link rel="stylesheet" href="travel.css?v=full-width-photo-1" />
+    <link rel="stylesheet" href="travel.css?v=postcard-hero-1" />
     <script src="mobile-map.js?v=2" defer></script>
     <script src="script.js?v=app-bar-1" defer></script>
   </head>
@@ -25,13 +25,17 @@
       <nav aria-label="Main navigation"><a href="#weekend">Weekend</a><a href="#travel">Travel</a><button type="button" data-open-map="cruise" aria-haspopup="dialog" aria-controls="guide-dialog">Map <span class="print-icon" data-print-icon="ne" aria-hidden="true"></span></button><a class="rsvp-stamp" href="#rsvp" aria-label="RSVP"><span class="stamp-face"><span>RSVP</span><svg aria-hidden="true" viewBox="0 0 48 8" width="48" height="8"><path d="M1 2Q7 6 13 2T25 2T37 2T49 2M1 6Q7 10 13 6T25 6T37 6T49 6" fill="none" stroke="currentColor" stroke-width="1"/></svg></span></a></nav>
     </header>
     <main>
-      <section class="travel-hero" aria-labelledby="invitation-title">
+      <section class="travel-hero" aria-labelledby="hero-postcard-title">
         <picture class="travel-hero-photo">
           <source media="(max-width:760px)" srcset="assets/hero-dscf1945-mobile.jpg" />
           <img class="travel-hero-image" src="assets/hero-dscf1945-full.jpg" alt="Dylan and Emma smiling beside a seaplane, with Emma showing her engagement ring" fetchpriority="high" />
         </picture>
-        <p class="mobile-hero-title" aria-hidden="true">Wedding Dylemma</p>
-        <div class="pamphlet-intro"><p>A little love. A lot of Seattle.</p><button class="pamphlet-cover" id="pamphlet-open" type="button" aria-haspopup="dialog" aria-controls="pamphlet-dialog"><span class="cover-greeting">You’re invited to</span><span class="cover-title" id="invitation-title" role="heading" aria-level="1">SEATTLE</span><span class="cover-picture"><img id="pamphlet-cover-photo" src="assets/pamphlet-flight.jpg" alt="Seattle skyline and Lake Union seen through a seaplane cockpit" /></span><span class="cover-bottom">Wedding Dylemma<span aria-hidden="true"><span class="print-icon" data-print-icon="star" aria-hidden="true"></span></span></span><span class="cover-action">Open your invitation <span aria-hidden="true"><span class="print-icon" data-print-icon="ne" aria-hidden="true"></span></span></span></button><a class="pamphlet-skip" href="#weekend">Or go straight to the weekend plans <span class="print-icon" data-print-icon="down" aria-hidden="true"></span></a></div>
+        <div class="hero-postcard-lettering">
+          <p class="hero-postcard-greeting">Greetings from our next adventure</p>
+          <h1 id="hero-postcard-title">Wedding<br />Dylemma</h1>
+          <p class="hero-postcard-signature">Dylan &amp; Emma · Seattle</p>
+        </div>
+        <div class="pamphlet-intro"><p>A little love. A lot of Seattle.</p><button class="pamphlet-cover" id="pamphlet-open" type="button" aria-haspopup="dialog" aria-controls="pamphlet-dialog"><span class="cover-greeting">You’re invited to</span><span class="cover-title" id="invitation-title" role="heading" aria-level="2">SEATTLE</span><span class="cover-picture"><img id="pamphlet-cover-photo" src="assets/pamphlet-flight.jpg" alt="Seattle skyline and Lake Union seen through a seaplane cockpit" /></span><span class="cover-bottom">Wedding Dylemma<span aria-hidden="true"><span class="print-icon" data-print-icon="star" aria-hidden="true"></span></span></span><span class="cover-action">Open your invitation <span aria-hidden="true"><span class="print-icon" data-print-icon="ne" aria-hidden="true"></span></span></span></button><a class="pamphlet-skip" href="#weekend">Or go straight to the weekend plans <span class="print-icon" data-print-icon="down" aria-hidden="true"></span></a></div>
       </section>
       <section class="travel-welcome" aria-labelledby="welcome-title"><h2 id="welcome-title">Come for the wedding.<br /><em>Stay for the memories.</em></h2><div><p>Our favorite people, together in one of our favorite places. We can’t wait to celebrate with you.</p><p class="travel-date-note">Wedding date &amp; final details coming soon</p></div></section>
 
