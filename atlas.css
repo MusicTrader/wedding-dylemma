@@ -213,3 +213,12 @@
  .guide-dialog.mobile-map .guide-mode span{font-size:16px;line-height:20px;text-transform:none;letter-spacing:0;white-space:nowrap}
  .mobile-map .atlas-compass{top:calc(140px + env(safe-area-inset-top,0px))}
 }
+
+/* A compact desktop masthead leaves the atlas room to breathe. */
+@media(min-width:761px){
+ .atlas-heading{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:12px 20px;text-align:left}
+ .atlas-heading>span{display:none}
+ .atlas-heading h2{flex:none;font-size:40px;line-height:1;margin:0;letter-spacing:.055em;-webkit-text-stroke:.7px #e6bc72;text-shadow:1px 1px #e6bc72,2px 2px #294952}
+ .atlas-heading p{font-size:16px;line-height:1.4;max-width:360px;text-align:right}
+}
+@media(min-width:761px) and (max-width:1000px){.atlas-heading p{display:none}}
