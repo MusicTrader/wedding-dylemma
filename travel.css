@@ -192,7 +192,8 @@ body.pamphlet-open{overflow:hidden}
 .print-icon svg{display:block;width:100%;height:100%;overflow:visible}
 
 /* Die-cut boarding passes, with a separate perforated admission stub. */
-.travel-itinerary{grid-template-columns:1fr;gap:28px}
+.travel-itinerary{grid-template-columns:1fr;gap:28px;max-width:960px;margin-inline:auto}
+#weekend .travel-section-heading,#weekend .travel-smallnote{max-width:960px;margin-inline:auto}
 .travel-ticket,.travel-ticket:first-child,.travel-ticket:last-child,.travel-ticket.ticket-wedding{display:block;padding:0;border:0;background:none;box-shadow:none;filter:drop-shadow(4px 5px 0 #17354530);--stub:120px;--ticket-paper:var(--water-paper)}
 .travel-ticket.ticket-wedding{--ticket-paper:var(--sun-paper)}
 .travel-ticket:last-child{--ticket-paper:var(--olive-paper)}
@@ -212,19 +213,38 @@ body.pamphlet-open{overflow:hidden}
 .ticket-body>address,.ticket-body>.ticket-pending{grid-column:2;grid-row:1/4;margin:0;align-self:center}
 .ticket-body>.travel-link{grid-column:1/-1;justify-self:start;margin-top:18px;text-align:left}
 @media(max-width:700px){
- .travel-ticket,.travel-ticket:first-child,.travel-ticket:last-child,.travel-ticket.ticket-wedding{--stub:70px}
+ .travel-ticket,.travel-ticket:first-child,.travel-ticket:last-child,.travel-ticket.ticket-wedding{--stub:60px}
  .ticket-band{padding:10px 15px;letter-spacing:0;gap:8px}.ticket-band span:last-child{display:none}
  .ticket-stock{border-radius:11px}
- .ticket-stub{padding:22px 6px;gap:18px;justify-content:flex-start}
+ .ticket-stub{padding:16px 6px;gap:12px;justify-content:flex-start}
  .ticket-number{font-size:var(--type-4)}.ticket-day{writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.08em}
  .ticket-stub .event-symbol{width:26px;height:26px}.ticket-barcode{width:42px;margin-top:auto}.ticket-serial{display:none}
- .ticket-body{display:flex;flex-direction:column;gap:0;padding:22px 18px 24px}
- .travel-ticket h3{font-size:var(--type-2);margin-bottom:12px}
- .ticket-body>address,.ticket-body>.ticket-pending{align-self:stretch;margin-top:16px}
- .ticket-body>.travel-link{margin-top:18px;align-self:flex-start}
+ .ticket-body{display:flex;flex-direction:column;gap:0;padding:16px 16px 18px}
+ .travel-ticket h3{font-size:var(--type-2);margin-bottom:8px}
+ .travel-ticket .ticket-time{margin-bottom:8px}
+ .travel-ticket p,.travel-ticket address{line-height:1.5}
+ .travel-itinerary{gap:20px}
+ .ticket-body>address,.ticket-body>.ticket-pending{align-self:stretch;margin-top:10px}
+ .ticket-body>.travel-link{margin-top:10px;align-self:flex-start}
 }
 
 .ticket-band{display:grid;grid-template-columns:var(--stub) minmax(0,1fr);gap:0;padding:10px 0}
 .ticket-band-stub{text-align:center;letter-spacing:.1em}
 .ticket-band-title{display:flex;justify-content:space-between;gap:16px;padding:0 32px}
-@media(max-width:700px){.ticket-band span:last-child{display:flex}.ticket-band-title{padding:0 18px}.ticket-band-title span:last-child{display:none}}
+@media(max-width:700px){.ticket-band span:last-child{display:flex}.ticket-band-title{padding:0 16px}.ticket-band-title span:last-child{display:none}}
+
+/* Portrait admission tickets on wide screens; compact passes on phones. */
+@media(min-width:1051px){
+ .travel-itinerary{grid-template-columns:repeat(3,minmax(0,1fr));max-width:1080px;gap:24px}
+ #weekend .travel-section-heading,#weekend .travel-smallnote{max-width:1080px}
+ .ticket-stock{height:100%;grid-template-columns:minmax(0,1fr);grid-template-rows:112px auto 1fr;min-height:570px;padding-bottom:9px;-webkit-mask-image:radial-gradient(circle at 0 112px,transparent 11px,#000 11.7px),radial-gradient(circle at 100% 112px,transparent 11px,#000 11.7px);mask-image:radial-gradient(circle at 0 112px,transparent 11px,#000 11.7px),radial-gradient(circle at 100% 112px,transparent 11px,#000 11.7px)}
+ .ticket-stock::after{top:111px;bottom:auto;left:18px;right:18px;width:auto;height:2px;background:repeating-linear-gradient(to right,#17354570 0 3px,transparent 3px 10px)}
+ .ticket-band{grid-row:2;margin-top:12px;grid-template-columns:52px minmax(0,1fr)}
+ .ticket-band-title{padding:0 14px 0 0}.ticket-band-title span{display:none}
+ .ticket-body{grid-row:3;display:flex;flex-direction:column;padding:26px 24px 22px}
+ .ticket-body>address,.ticket-body>.ticket-pending{align-self:stretch;margin-top:18px}
+ .ticket-body>.travel-link{margin-top:auto;padding-top:20px;align-self:flex-start}
+ .ticket-stub{grid-row:1;display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;gap:4px 16px;padding:15px 24px;align-content:center;justify-items:start}
+ .ticket-day{grid-column:1;grid-row:1;font-size:var(--type-2)}.ticket-number{grid-column:2;grid-row:1/3;font-size:var(--type-4)}
+ .ticket-stub .event-symbol,.ticket-serial{display:none}.ticket-barcode{grid-column:1;grid-row:2;height:20px;width:95px}
+}
