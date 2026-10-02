@@ -410,3 +410,7 @@ body{background-image:var(--paper-fibers),var(--paper-mottle);background-size:72
 /* Solid hero ink: preserve full opacity over the photograph. */
 .hero-postcard-lettering{mix-blend-mode:normal;opacity:1}
 .hero-curved-title,.hero-postcard-greeting{filter:none;opacity:1}
+
+/* Displace only the solid hero ink; no opacity mask or blend mode. */
+.hero-curved-title{filter:url('#hero-ink-edge')}
+.hero-postcard-greeting{filter:url('#printed-copy')}

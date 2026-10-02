@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="atlas.css?v=map-selection-1" />
     <script src="icons.js?v=app-bar-1" defer></script>
     <script src="atlas.js?v=gentle-camera-1" defer></script>
-    <link rel="stylesheet" href="travel.css?v=opaque-hero-1" />
+    <link rel="stylesheet" href="travel.css?v=opaque-hero-edge-1" />
     <script src="mobile-map.js?v=2" defer></script>
     <script src="script.js?v=app-bar-1" defer></script>
   </head>
@@ -26,6 +26,11 @@
           <feDisplacementMap in="spread" in2="fibers" scale=".8" xChannelSelector="R" yChannelSelector="G" result="ink" />
           <feColorMatrix in="fibers" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  .2 .2 .2 0 .65" result="coverage" />
           <feComposite in="ink" in2="coverage" operator="in" />
+        </filter>
+        <filter id="hero-ink-edge" x="-5%" y="-10%" width="110%" height="120%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="2" seed="23" result="fibers" />
+          <feMorphology in="SourceGraphic" operator="dilate" radius=".14" result="spread" />
+          <feDisplacementMap in="spread" in2="fibers" scale=".85" xChannelSelector="R" yChannelSelector="G" />
         </filter>
         <filter id="printed-copy" x="-3%" y="-5%" width="106%" height="110%" color-interpolation-filters="sRGB">
           <feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="23" result="fibers" />
