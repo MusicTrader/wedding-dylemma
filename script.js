@@ -180,9 +180,13 @@ let closingPaper = false;
 const paperReady = (async () => {
   const module = await import('./pamphlet-3d.js?v=scroll-icons-1');
   await document.fonts.ready;
-  await Promise.all([...document.querySelectorAll('.pamphlet-page img, .travel-hero-image, #pamphlet-cover-photo')].map(img => img.decode().catch(() => {})));
+  await Promise.all([...document.querySelectorAll('.pamphlet-page img, #pamphlet-cover-photo')].map(img => img.decode().catch(() => {})));
   paperModel = await module.createPamphlet({dialog:pamphletDialog,cover:pamphletOpen,onFailure:() => { paperModel = null; }});
-})().catch(error => console.warn('3D paper unavailable; the accessible invitation remains available.', error));
+})().catch(error => console.warn('3D paper unavailable; the accessible invitation remains available.', error))
+  .finally(() => {
+    // Reveal only after the first WebGL frame, or show the HTML fallback on failure.
+    document.documentElement.classList.remove('paper-loading');
+  });
 pamphletOpen.addEventListener('click', async () => {
   pamphletOpen.setAttribute('aria-busy','true');
   await paperReady;

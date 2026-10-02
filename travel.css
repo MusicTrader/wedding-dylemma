@@ -414,3 +414,8 @@ body{background-image:var(--paper-fibers),var(--paper-mottle);background-size:72
 /* Displace only the solid hero ink; no opacity mask or blend mode. */
 .hero-curved-title{filter:url('#hero-ink-edge')}
 .hero-postcard-greeting{filter:url('#printed-copy')}
+
+/* Grain belongs to the printed content below the naturally grainy hero photo. */
+.printed-page{position:relative;isolation:isolate}
+.travel-footer{position:relative;isolation:isolate}
+.travel-footer::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:var(--print-grain);background-size:384px 384px;mix-blend-mode:overlay;opacity:var(--grain-intensity)}

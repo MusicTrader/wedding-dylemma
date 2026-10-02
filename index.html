@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script>document.documentElement.classList.add('paper-loading');</script>
+    <style>.paper-loading #pamphlet-open{visibility:hidden}</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#173545" />
     <meta name="description" content="Join Dylan and Emma for Wedding Dylemma, a wedding weekend in Seattle. Find the itinerary, hotel options, travel details, and an interactive city map." />
@@ -13,9 +15,9 @@
     <link rel="stylesheet" href="atlas.css?v=map-selection-1" />
     <script src="icons.js?v=app-bar-1" defer></script>
     <script src="atlas.js?v=gentle-camera-1" defer></script>
-    <link rel="stylesheet" href="travel.css?v=opaque-hero-edge-1" />
+    <link rel="stylesheet" href="travel.css?v=hero-no-grain-1" />
     <script src="mobile-map.js?v=2" defer></script>
-    <script src="script.js?v=app-bar-1" defer></script>
+    <script src="script.js?v=paper-ready-1" defer></script>
   </head>
   <body id="top">
     <svg class="print-filter-defs" width="0" height="0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
@@ -42,7 +44,6 @@
         </filter>
       </defs>
     </svg>
-    <div class="film-grain" aria-hidden="true"></div>
     <a class="travel-skip" href="#weekend">Skip to the weekend plans</a>
     <header class="travel-header">
       <a class="travel-brand" href="#top">Wedding Dylemma <span>Dylan &amp; Emma · Seattle</span></a>
@@ -69,6 +70,8 @@
         </div>
         <div class="pamphlet-intro"><p>A little love. A lot of Seattle.</p><button class="pamphlet-cover" id="pamphlet-open" type="button" aria-haspopup="dialog" aria-controls="pamphlet-dialog"><span class="cover-greeting">You’re invited to</span><span class="cover-title" id="invitation-title" role="heading" aria-level="2">SEATTLE</span><span class="cover-picture"><img id="pamphlet-cover-photo" src="assets/pamphlet-flight.jpg" alt="Seattle skyline and Lake Union seen through a seaplane cockpit" /></span><span class="cover-bottom">Wedding Dylemma<span aria-hidden="true"><span class="print-icon" data-print-icon="star" aria-hidden="true"></span></span></span><span class="cover-action">Open your invitation <span aria-hidden="true"><span class="print-icon" data-print-icon="ne" aria-hidden="true"></span></span></span></button><a class="pamphlet-skip" href="#weekend">Or go straight to the weekend plans <span class="print-icon" data-print-icon="down" aria-hidden="true"></span></a></div>
       </section>
+      <div class="printed-page">
+        <div class="film-grain" aria-hidden="true"></div>
       <section class="postcard-reverse" aria-labelledby="welcome-title">
         <div class="postcard-reverse-note">
           <p class="postcard-reverse-kicker">With love, from Seattle</p>
@@ -110,6 +113,7 @@
       <section class="travel-map-section" id="seattle" aria-labelledby="explore-title"><div class="travel-map-copy"><span class="travel-kicker">Explore Seattle</span><h2 id="explore-title">All the places.<br /><em>One little map.</em></h2><p>See how the weekend fits together. Find the cruise, the wedding, your hotel, and the way in from SEA.</p><button class="travel-button" id="guide-open" type="button" data-open-map="cruise" aria-haspopup="dialog" aria-controls="guide-dialog">Explore the interactive map <span><span class="print-icon" data-print-icon="ne" aria-hidden="true"></span></span></button><p class="travel-map-hint">Open it any time from the navigation or a place on this page.</p></div><button class="travel-map-postcard" type="button" data-open-map="cruise" aria-label="Open the interactive Seattle map" aria-haspopup="dialog" aria-controls="guide-dialog"><span class="map-postcard-title">SEATTLE</span><img src="assets/seattle-atlas.svg" alt="Preview of the illustrated Seattle street map" loading="lazy" /><span class="map-postcard-footer">WATERFRONT · PIONEER SQUARE <b>EXPLORE <span class="print-icon" data-print-icon="ne" aria-hidden="true"></span></b></span></button></section>
 
       <section class="travel-rsvp" id="rsvp" aria-labelledby="rsvp-title"><h2 id="rsvp-title">Wish you were here?<br /><em>We do, too.</em></h2><p>We can’t wait to share this weekend with you.</p><div class="rsvp-status">RSVP details coming soon</div><p class="travel-smallnote">We’ll share how to RSVP with the final invitation.</p></section>
+      </div>
     </main>
     <dialog class="pamphlet-dialog" id="pamphlet-dialog" aria-labelledby="pamphlet-title">
       <div class="pamphlet-toolbar"><span>Your invitation to Seattle</span><button id="pamphlet-close" type="button" aria-label="Close invitation">Close <span aria-hidden="true">×</span></button></div>
