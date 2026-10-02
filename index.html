@@ -13,11 +13,30 @@
     <link rel="stylesheet" href="atlas.css?v=map-selection-1" />
     <script src="icons.js?v=app-bar-1" defer></script>
     <script src="atlas.js?v=gentle-camera-1" defer></script>
-    <link rel="stylesheet" href="travel.css?v=fine-soft-grain-1" />
+    <link rel="stylesheet" href="travel.css?v=printed-ink-1" />
     <script src="mobile-map.js?v=2" defer></script>
     <script src="script.js?v=app-bar-1" defer></script>
   </head>
   <body id="top">
+    <svg class="print-filter-defs" width="0" height="0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="printed-display" x="-5%" y="-10%" width="110%" height="120%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="2" seed="23" result="fibers" />
+          <feMorphology in="SourceGraphic" operator="dilate" radius=".12" result="spread" />
+          <feDisplacementMap in="spread" in2="fibers" scale=".8" xChannelSelector="R" yChannelSelector="G" result="ink" />
+          <feColorMatrix in="fibers" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  .2 .2 .2 0 .65" result="coverage" />
+          <feComposite in="ink" in2="coverage" operator="in" />
+        </filter>
+        <filter id="printed-copy" x="-3%" y="-5%" width="106%" height="110%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="23" result="fibers" />
+          <feDisplacementMap in="SourceGraphic" in2="fibers" scale=".3" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+        <filter id="printed-rule" x="-3%" y="-100%" width="106%" height="300%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency=".08 .6" numOctaves="2" seed="31" result="fibers" />
+          <feDisplacementMap in="SourceGraphic" in2="fibers" scale="1.5" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+    </svg>
     <div class="film-grain" aria-hidden="true"></div>
     <a class="travel-skip" href="#weekend">Skip to the weekend plans</a>
     <header class="travel-header">

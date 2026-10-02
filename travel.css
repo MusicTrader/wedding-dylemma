@@ -389,3 +389,20 @@ body{background-image:var(--paper-fibers),var(--paper-mottle);background-size:72
 .hero-curved-title{filter:none}
 .postcard-reverse-note h2,.postcard-reverse-title,.postcard-reverse-signature{mix-blend-mode:multiply}
 @media(max-width:760px){.hero-postcard-lettering{mix-blend-mode:multiply}.hero-curved-title{filter:none}}
+
+/* Small, stationary imperfections in the ink itself; never blur the page. */
+.print-filter-defs{position:absolute;overflow:hidden;pointer-events:none}
+.hero-curved-title,.postcard-reverse-note h2,.postcard-reverse-title,.postcard-reverse-signature,.travel-section h2,.travel-map-copy h2,.travel-rsvp h2,.travel-ticket h3,.postcard-postmark{filter:url('#printed-display')}
+.hero-postcard-greeting,.postcard-reverse-note>p,.postcard-address-lines>span{filter:url('#printed-copy')}
+.travel-hero::after,.postcard-reverse::before{filter:url('#printed-display')}
+.ticket-stock::after{filter:url('#printed-copy')}
+.postcard-address-lines>span{position:relative;border-bottom:0}
+.postcard-address-lines>span::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:#92764b66;filter:url('#printed-rule');pointer-events:none}
+.postcard-reverse-address{border-left:0}
+.postcard-reverse-address::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:#92764b88;filter:url('#printed-rule');pointer-events:none}
+.travel-section{position:relative;border-top:0}
+.travel-section::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--line);filter:url('#printed-rule');pointer-events:none}
+@media(max-width:760px){
+ .postcard-reverse-address{border-top:0}
+ .postcard-reverse-address::before{width:auto;height:1px;right:0;bottom:auto}
+}
