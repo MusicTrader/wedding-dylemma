@@ -146,10 +146,17 @@ export async function createPamphlet({dialog, cover, onFailure}) {
   function stopAnimation(){if(animation){const resolve=animation.resolve;animation=null;resolve();}cancelAnimationFrame(frame);frame=0;}
   function completeOpen(){skip.hidden=true;controls.hidden=false;dialog.dataset.paperState='open';if(document.activeElement===skip)dialog.querySelector('#pamphlet-close').focus({preventScroll:true});}
   function project(mesh,x,y){return new THREE.Vector3(x,y,0).applyMatrix4(mesh.matrixWorld).project(camera);}
+  let renderWidth=0, renderHeight=0;
   function render(){
     if(disposed)return;
     const width=active?innerWidth:host.clientWidth, screenHeight=active?innerHeight:host.clientHeight;
-    renderer.setSize(width,screenHeight,false);camera.aspect=width/screenHeight;camera.position.z=8;camera.updateProjectionMatrix();
+    // Resizing resets the drawing buffer, even when its dimensions are unchanged.
+    // Keep it intact throughout the fold animation.
+    if(width!==renderWidth || screenHeight!==renderHeight){
+      renderer.setSize(width,screenHeight,false);
+      renderWidth=width;renderHeight=screenHeight;
+      camera.aspect=width/screenHeight;camera.position.z=8;camera.updateProjectionMatrix();
+    }
     const worldHeight=16*Math.tan(THREE.MathUtils.degToRad(18));
     const coverRect=cover.getBoundingClientRect();
     const rect=active?coverRect:{left:40,top:40,width:coverRect.width,height:coverRect.height};
@@ -177,6 +184,8 @@ export async function createPamphlet({dialog, cover, onFailure}) {
       const p=item.index===0?left:item.index===2?right:1;
       item.hinge.rotation.y=item.index===0?Math.PI*.998*(1-p):item.index===2?-Math.PI*.998*(1-p):0;
       const pos=item.geometry.attributes.position,bend=Math.sin(p*Math.PI)*.075;
+      if(item.lastBend===bend)continue;
+      item.lastBend=bend;
       for(let i=0;i<pos.count;i++){const x=item.base[i*3],y=item.base[i*3+1],edge=item.index===0?.5-x:item.index===2?x+.5:0;pos.setZ(i,bend*edge*edge*(1+.15*Math.sin(y*3)));}
       pos.needsUpdate=true;item.geometry.computeVertexNormals();
     }

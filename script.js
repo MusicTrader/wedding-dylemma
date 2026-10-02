@@ -178,7 +178,7 @@ const pamphletClose = document.getElementById('pamphlet-close');
 let paperModel;
 let closingPaper = false;
 const paperReady = (async () => {
-  const module = await import('./pamphlet-3d.js?v=scroll-icons-1');
+  const module = await import('./pamphlet-3d.js?v=stable-buffer-1');
   await document.fonts.ready;
   await Promise.all([...document.querySelectorAll('.pamphlet-page img, #pamphlet-cover-photo')].map(img => img.decode().catch(() => {})));
   paperModel = await module.createPamphlet({dialog:pamphletDialog,cover:pamphletOpen,onFailure:() => { paperModel = null; }});
